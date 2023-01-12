@@ -24,9 +24,11 @@ const StTodoBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-radius: 15px;
   &:hover {
-    background-color: blueviolet;
-    transition: background-color 300ms linear;
+    background-color: #dbedf5;
+    transition: background-color 100ms linear;
+    cursor: pointer;
   }
 `;
 
@@ -37,6 +39,13 @@ const StAddBoxsDeletebutton = styled.button`
   height: 90px;
   margin: 20px;
   padding: 0px 0px 0px 0px;
+  font-size: 40px;
+  border-radius: 15px;
+  &:hover {
+    background-color: #92d4ee;
+    transition: background-color 500ms linear;
+    cursor: pointer;
+  }
 `;
 
 const StAddBoxs = styled.div`
@@ -49,6 +58,7 @@ const StAddBoxs = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-radius: 15px;
 `;
 
 const StAddBoxsAddbutton = styled.button`
@@ -58,6 +68,12 @@ const StAddBoxsAddbutton = styled.button`
   height: 90px;
   margin: 20px;
   padding: 0px 0px 0px 0px;
+  border-radius: 15px;
+  &:hover {
+    background-color: #92d4ee;
+    transition: background-color 300ms linear;
+    cursor: pointer;
+  }
 `;
 
 export default function Home() {

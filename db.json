@@ -14,12 +14,6 @@
     },
     {
       "title": "숙제",
-      "description": "툴킷,악시오스 사용하기",
-      "name": "김지섭",
-      "id": 12
-    },
-    {
-      "title": "숙제",
       "description": "css 작업하기",
       "name": "석지김",
       "id": 13
@@ -65,6 +59,18 @@
       "name": "예를들어서",
       "description": "추가를",
       "id": 21
+    },
+    {
+      "title": "asd",
+      "name": "sa",
+      "description": "asd",
+      "id": 22
+    },
+    {
+      "title": "asd",
+      "name": "asd",
+      "description": "asd",
+      "id": 23
     }
   ],
   "comments": [

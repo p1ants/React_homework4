@@ -2,6 +2,54 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+
+//상세페이지 상단
+const StDetailUpper = styled.div`
+  display: flex;
+  margin-bottom: 50px;
+`;
+
+const StDetailUpperLeft = styled.div`
+  flex-basis: 80%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+`;
+const StDetailUpperRight = styled.div`
+  flex-basis: 20%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+`;
+
+//상세페이지 내용
+const StDetailDescription = styled.div`
+  border: solid gray 3px;
+  border-radius: 15px;
+  padding: 40px;
+  /* max-width: 1200vw; */
+  width: 70vw;
+  height: 200px;
+`;
+
+//댓글추가 박스
+const StAddBoxs = styled.div`
+  border: solid gray 3px;
+  /* max-width: 1200vw; */
+  width: 71vw;
+  height: 50px;
+  margin: 20px;
+  padding: 0px 20px 0px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 15px;
+`;
 
 export default function Detail() {
   const navigate = useNavigate();
@@ -55,25 +103,29 @@ export default function Detail() {
 
   return (
     <div>
-      <div>
-        <div
-          onClick={() => {
-            navigate(-1);
-          }}
-        >
-          이전으로
-        </div>
-        <div>수정하기</div>
-      </div>
+      <StDetailUpper>
+        <StDetailUpperLeft>
+          <h2>{todo.title}</h2>
+          <div>-{todo.name}-</div>
+        </StDetailUpperLeft>
+        <StDetailUpperRight>
+          <div
+            onClick={() => {
+              navigate(-1);
+            }}
+          >
+            이전으로
+          </div>
+          <div>수정하기</div>
+        </StDetailUpperRight>
+      </StDetailUpper>
+
+      <StDetailDescription>{todo.description}</StDetailDescription>
+      <div>-------------------------------------</div>
 
       <div>
-        <span>{todo.title}</span>
-        <div>{todo.name}</div>
-      </div>
-      <span>{todo.description}</span>
-      <div>-------------------------------------</div>
-      <div>
-        {comment}- 댓글 <button>삭제</button>
+        {comment}- 댓글 <button>수정</button>
+        <button>삭제</button>
       </div>
 
       <form
@@ -82,7 +134,7 @@ export default function Detail() {
           onSubmitHandler(comment);
         }}
       >
-        <div>
+        <StAddBoxs>
           <input
             type='text'
             placeholder='작성자'
@@ -106,10 +158,8 @@ export default function Detail() {
               });
             }}
           />
-        </div>
-        <div>
           <button>댓글</button>
-        </div>
+        </StAddBoxs>
       </form>
     </div>
   );
