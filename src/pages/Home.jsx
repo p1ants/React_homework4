@@ -1,6 +1,64 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import { RiDeleteBinLine } from 'react-icons/ri';
+
+const StTodoBoxs = styled.div`
+  /* background-color: brown; */
+  height: 700px;
+  /* 박스내에서 텍스트 작성, 스크롤 */
+  box-sizing: border-box;
+  background: transparent;
+  padding: 0px 0px 0px 20px;
+  overflow: auto;
+`;
+
+const StTodoBox = styled.div`
+  border: solid gray 3px;
+  /* max-width: 1200vw; */
+  width: 90vw;
+  height: 100px;
+  margin: 20px;
+  padding: 0px 20px 0px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &:hover {
+    background-color: blueviolet;
+    transition: background-color 300ms linear;
+  }
+`;
+
+const StAddBoxsDeletebutton = styled.button`
+  border: solid gray 3px;
+  background-color: white;
+  width: 90px;
+  height: 90px;
+  margin: 20px;
+  padding: 0px 0px 0px 0px;
+`;
+
+const StAddBoxs = styled.div`
+  border: solid gray 3px;
+  /* max-width: 1200vw; */
+  width: 90vw;
+  height: 100px;
+  margin: 20px;
+  padding: 0px 20px 0px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const StAddBoxsAddbutton = styled.button`
+  border: solid gray 3px;
+  background-color: white;
+  width: 90px;
+  height: 90px;
+  margin: 20px;
+  padding: 0px 0px 0px 0px;
+`;
 
 export default function Home() {
   const navigate = useNavigate();
@@ -42,13 +100,13 @@ export default function Home() {
     fetchTodos();
   }, []);
 
-  console.log(todos); // App.js:16
+  console.log(todos); //FIXME: App.js:16
 
   return (
     <>
-      <div>
+      <StTodoBoxs>
         {todos?.map((todo) => (
-          <div>
+          <StTodoBox>
             <div
               key={todo.id}
               onClick={() => {
@@ -62,59 +120,63 @@ export default function Home() {
               </div>
             </div>
             <div>
-              <button
+              <StAddBoxsDeletebutton
                 type='button'
                 onClick={() => onClickDeleteButtonHandler(todo.id)}
               >
-                삭제
-              </button>
+                <RiDeleteBinLine />
+              </StAddBoxsDeletebutton>
             </div>
-          </div>
+          </StTodoBox>
         ))}
-      </div>
+      </StTodoBoxs>
       <form
         onSubmit={(e) => {
           e.preventDefault();
           onSubmitHandler(todo);
         }}
       >
-        <input
-          type='text'
-          placeholder='제목'
-          onChange={(e) => {
-            const { value } = e.target;
-            setTodo({
-              ...todo,
-              title: value,
-            });
-          }}
-        />
+        <StAddBoxs>
+          <div>
+            <input
+              type='text'
+              placeholder='작성자'
+              onChange={(e) => {
+                const { value } = e.target;
+                setTodo({
+                  ...todo,
+                  name: value,
+                });
+              }}
+            />
 
-        <input
-          type='text'
-          placeholder='내용'
-          onChange={(e) => {
-            const { value } = e.target;
-            setTodo({
-              ...todo,
-              description: value,
-            });
-          }}
-        />
+            <input
+              type='text'
+              placeholder='제목'
+              onChange={(e) => {
+                const { value } = e.target;
+                setTodo({
+                  ...todo,
+                  title: value,
+                });
+              }}
+            />
 
-        <input
-          type='text'
-          placeholder='작성자'
-          onChange={(e) => {
-            const { value } = e.target;
-            setTodo({
-              ...todo,
-              name: value,
-            });
-          }}
-        />
+            <input
+              type='text'
+              placeholder='내용'
+              onChange={(e) => {
+                const { value } = e.target;
+                setTodo({
+                  ...todo,
+                  description: value,
+                });
+              }}
+            />
+          </div>
 
-        <button>추가하기</button>
+          <StAddBoxsAddbutton>추가하기</StAddBoxsAddbutton>
+        </StAddBoxs>
       </form>
     </>
   );

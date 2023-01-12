@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Home from '../pages/Home';
 import Detail from '../pages/Detail';
+import Layout from './Layout';
 
 // 2. Router 라는 함수를 만들고 아래와 같이 작성합니다.
 //BrowserRouter를 Router로 감싸는 이유는,
@@ -12,13 +13,15 @@ import Detail from '../pages/Detail';
 const Router = () => {
   return (
     <BrowserRouter>
-      <Routes>
-        {/* 2번 라우터에 url작성 */}
-        <Route path='/' element={<Home />} />
+      <Layout>
+        <Routes>
+          {/* 2번 라우터에 url작성 */}
+          <Route path='/' element={<Home />} />
 
-        <Route path='/:id' element={<Detail />} />
-        {/* 동적임..  */}
-      </Routes>
+          <Route path='/:id' element={<Detail />} />
+          {/* 동적임..  */}
+        </Routes>
+      </Layout>
     </BrowserRouter>
   );
 };
